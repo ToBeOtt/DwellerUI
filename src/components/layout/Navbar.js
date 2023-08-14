@@ -9,10 +9,9 @@ import {
   SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
 const products = [
-  { name: 'Hushållsinfo', description: 'Se medlemmar, ändra husinfo mm', href: '#', icon: ChartPieIcon },
+  { name: 'Hushållsinfo', description: 'Se medlemmar, ändra husinfo mm', href: '/household/index/', icon: ChartPieIcon },
   { name: 'Skicka kallelse', description: 'Kalla till husmöte', href: '#', icon: CursorArrowRaysIcon },
   // { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
   // { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
@@ -27,7 +26,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Header(props) {
+export default function Navbar(props) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -49,7 +48,6 @@ export default function Header(props) {
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white">
               Hushåll
-              <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
 
             <Transition
@@ -97,10 +95,10 @@ export default function Header(props) {
             </Transition>
           </Popover>
 
-          <a href="/Meetings" className="text-sm font-semibold leading-6 text-white no-underline">
-             Kalender
+          <a href="/definition" className="text-sm font-semibold leading-6 text-white no-underline">
+            Ordbok
           </a>
-          <a href="Meetings" className="text-sm font-semibold leading-6 text-white no-underline">
+          <a href="/meetings" className="text-sm font-semibold leading-6 text-white no-underline">
             Möten
           </a>
           <a href="/employees" className="text-sm font-semibold leading-6 text-white no-underline">
@@ -145,10 +143,6 @@ export default function Header(props) {
                     <>
                       <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                         Product
-                        <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
-                          aria-hidden="true"
-                        />
                       </Disclosure.Button>
                       <Disclosure.Panel className="mt-2 space-y-2">
                         {[...products, ...callsToAction].map((item) => (
@@ -169,7 +163,7 @@ export default function Header(props) {
               </div>
               <div className="py-6">
                 <a
-                  href="../../pages/Login.js"
+                  href="../../pages/authentication/Login.js"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log in

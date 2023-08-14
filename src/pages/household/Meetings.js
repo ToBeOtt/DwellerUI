@@ -1,5 +1,6 @@
-import ContentTitle from '../../components/Core/Text/ContentTitle'
-import ContentText from '../../components/Core/Text/ContentText'
+import ContentTitle from '../../components/layout/Text/ContentTitle';
+import ContentText from '../../components/layout/Text/ContentText';
+
 
     function Meetings(){
         return(
@@ -7,8 +8,10 @@ import ContentText from '../../components/Core/Text/ContentText'
             <ContentTitle Title={'Husmöte'} />     
 
             <ContentText Text={'Text för när möte ska äga rum.'} />
+
             </>
-            
         )
     }
     export default Meetings;
+
+

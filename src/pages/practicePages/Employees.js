@@ -1,9 +1,9 @@
-import '../App.css';
+import '../../App.css';
 import {useState} from 'react';
-import Employee from '../components/Employee.js';
+import Employee from '../..//components/practicematerial/Employee.js';
 import {v4 as uuidv4} from 'uuid';
-import AddEmployee from '../components/AddEmployee';
-import EditEmployee from '../components/EditEmployee';
+import AddEmployee from '../..//components/practicematerial/AddEmployee';
+import EditEmployee from '../..//components/practicematerial/EditEmployee';
 
 
 function Employees() {

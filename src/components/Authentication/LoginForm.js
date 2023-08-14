@@ -1,36 +1,37 @@
 import { useState } from 'react';
-import API_BASE_URL from '../../config/apiConfig'; // Adjust the path as needed
+import { useNavigate } from 'react-router-dom';
+import baseUrl from '../../config/apiConfig'; // Adjust the path as needed
 
 function LoginForm(props) {
-  const [show, setShow] = useState(false);
-
-  const [username, setUsername] = useState('');
+  const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const navigate = useNavigate();
 
   const handleSignIn = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/Login`, {
+      const response = await fetch(`${baseUrl}/auth/Login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username,
+          email,
           password,
         }),
       });
   
       if (response.ok) {
-        const data = await response.json();
-        const jwtToken = data.token; // Update this based on your API response structure
-        setToken(jwtToken);
-        // You can also perform any additional actions based on the response
+        const user = await response.json();
+        const jwtToken = user.token; // Update this based on your API response structure
+        
+        // Store the token in localStorage
+        localStorage.setItem('token', jwtToken);
+        console.log(localStorage)
+
+        navigate('/household/index');
+
       } else {
-        // Handle error response
+          navigate('/error');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -41,7 +42,7 @@ function LoginForm(props) {
   return (
     <>
     <div className="flex justify-center">
-          <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" >
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
               Username
@@ -51,7 +52,7 @@ function LoginForm(props) {
               id="username" 
               type="text" 
               placeholder="name@mail.com" 
-              value={username}
+              value={email}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
