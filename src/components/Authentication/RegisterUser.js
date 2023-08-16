@@ -4,17 +4,34 @@ import baseUrl from '../../config/apiConfig'; // Adjust the path as needed
 
 export default function RegisterUser(props) {
   const [email, setEmail] = useState('');
+  const [alias, setAlias] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [householdOption, setHouseholdOption] = useState('none');
+  const [registerHouseClicked, setRegisterHouseClicked] = useState(true);
   const [passwordsMatch, setPasswordsMatch] = useState(true); 
-  
+
+
+  const handleHouseholdOptionChange = (e) => {
+    setHouseholdOption(e.target.value);
+  };
+
+ 
+
   const navigate = useNavigate();
 
   const handleSignIn = async () => {
+
     if (password !== repeatPassword) {
       setPasswordsMatch(false); 
       return;
     }
+
+    if (householdOption === "none") {
+      setRegisterHouseClicked(false); 
+      return;
+    }
+
 
     try {
       const response = await fetch(`${baseUrl}/auth/Register`, {
@@ -24,6 +41,7 @@ export default function RegisterUser(props) {
         },
         body: JSON.stringify({
           email,
+          alias,
           password
         }),
       });
@@ -31,12 +49,18 @@ export default function RegisterUser(props) {
       if (response.ok) {
         const user = await response.json();
         const jwtToken = user.token; 
+        const Email = user.email;
         
         localStorage.setItem('token', jwtToken);
         console.log(localStorage)
 
-        navigate('/login');
-
+        if (householdOption === 'create') { 
+          navigate(`/registerHouse?Email=${Email}`);
+          
+        } else if (householdOption === 'join') { 
+          navigate(`/registerHouseMember?Email=${Email}`);
+        }
+        
       } else {
           navigate('/error');
       }
@@ -47,6 +71,7 @@ export default function RegisterUser(props) {
   
   return(
     <>
+{/* Email */}
       <div className="flex justify-center">
       <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
@@ -59,6 +84,20 @@ export default function RegisterUser(props) {
           placeholder="name@mail.com" 
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+{/* Alias */}
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="alias">
+            Alias
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+          id="alias" 
+          type="text" 
+          placeholder="Namn som andra ser" 
+          value={alias}
+          onChange={(e) => setAlias(e.target.value)}
           />
         </div>
 
@@ -93,6 +132,39 @@ export default function RegisterUser(props) {
 
         <p className="text-dweller-pink text-xs italic">Repeat password.</p>
         </div>
+
+        <hr classname="rounded-md"></hr>
+        <fieldset className="mt-3">
+        <legend>Hur vill du ansluta ditt hushåll?</legend>
+        <div>
+          <input
+            type="radio"
+            id="createHouse"
+            name="householdOption"
+            value="create"
+            checked={householdOption === 'create'}
+            onChange={handleHouseholdOptionChange}
+          />
+          <label className="text-gray-700 text-sm font-bold mx-2" htmlFor="createHouse">
+            Skapa hushåll
+          </label>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            id="joinHousehold"
+            name="householdOption"
+            value="join"
+            checked={householdOption === 'join'}
+            onChange={handleHouseholdOptionChange}
+          />
+          <label className="text-gray-700 text-sm font-bold mx-2" htmlFor="joinHousehold">
+            Gå med i hushåll
+          </label>
+        </div>
+      </fieldset>
+        <hr classname="rounded-md"></hr>
     
         
 {/* SignIn */}
@@ -108,6 +180,12 @@ export default function RegisterUser(props) {
         {!passwordsMatch && (
             <p className="text-red-500 font-bold text-xs mt-2">Angivna lösenord är inte identiska</p>
           )}
+
+        {!registerHouseClicked && householdOption === "none" && (
+            <p className="text-red-500 font-bold text-xs mt-2">Välj om du vill skapa eller ansluta till hushåll</p>
+          )}
+
+
     </form>
 </div>    
     </>

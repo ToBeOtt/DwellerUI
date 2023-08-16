@@ -81,7 +81,7 @@ function LoginForm(props) {
           Logga in
         </button>
             <a className="inline-block align-baseline font-bold text-xs text-dweller-gray hover:text-blue-800" href="www.google.com">
-              Forgot Password?
+              Glömt lösenord?
             </a>
           </div>
         </form>

@@ -5,6 +5,8 @@ import Employees from './pages/practicePages/Employees';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/authentication/Login';
 import Register from './pages/authentication/Register';
+import RegisterHouse from './pages/authentication/RegisterHouse';
+import RegisterHouseMember from './pages/authentication/RegisterHouseMember';
 import Meetings from './pages/household/Meetings';
 import Dictionary from './pages/practicePages/Dictionary';
 import Definition from './pages/practicePages/Definition';
@@ -12,8 +14,6 @@ import Index from './pages/household/index';
 import Error from './pages/errorhandling/Error';
 
 function App() {
-  const user = localStorage.getItem('token');
-
   return (
     <BrowserRouter>
     <div className="DwellerApp bg-dweller-gray min-h-screen">
@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route path='/Meetings/' element={<MainLayout><Meetings /></MainLayout>} />
           
-          <Route path='/household/index' element={<MainLayout><Index /></MainLayout>} />´
+          <Route path='/household/index' element={<MainLayout><Index /></MainLayout>} />
 
           <Route path='/Dictionary' element={<MainLayout><Dictionary/></MainLayout>} />
 
@@ -33,6 +33,10 @@ function App() {
 
           <Route path='/Register' element={ <MainLayout><Register /> </MainLayout>} />
 
+          <Route path='/RegisterHouse' element={ <MainLayout><RegisterHouse /> </MainLayout>} />
+
+          <Route path='/RegisterHouseMember' element={ <MainLayout><RegisterHouseMember /> </MainLayout>} />
+          
           <Route path='/error' element={ <MainLayout><Error /> </MainLayout>} />
         </Routes>
     </div>
