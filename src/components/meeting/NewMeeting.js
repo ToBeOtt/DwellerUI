@@ -1,13 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Modal from 'react-bootstrap/Modal';
 import baseUrl from '../../config/apiConfig';
 
-export default function NewMeetingDatePicker() {
+
+export default function NewMeeting() {
   const [meetingDate, setMeetingDate] = useState(new Date());
   const [show, setShow] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,7 +22,7 @@ export default function NewMeetingDatePicker() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}` 
         },
         body: JSON.stringify({
           meetingDate,
@@ -26,11 +30,15 @@ export default function NewMeetingDatePicker() {
       });
       
       if (response.ok) {
+        const meetingData = await response.json();
+        localStorage.setItem('meetingData', meetingData);
         handleClose(); 
-      } else {
+      } else if(response.status === 401) {
+          navigate('/LoginPage');
+      } 
+      else {
         const responseData = await response.json();
         if (responseData.statusCode === 102) {
-          // handleClose();
           setErrorMessage(responseData.message);
         } else {
           console.error('Error on date selection');

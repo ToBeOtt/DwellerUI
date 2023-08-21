@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import baseUrl from '../../config/apiConfig'; // Adjust the path as needed
 
-export default function CreateHouse() {
+export default function RegisterHouse() {
   const location  = useLocation();
   const email = new URLSearchParams(location.search).get('Email'); 
 
@@ -25,10 +25,10 @@ export default function CreateHouse() {
       });
   
       if (response.ok) {
-        navigate('/login');
+        navigate('/loginPage');
 
       } else {
-          navigate('/error');
+          navigate('/ErrorPage');
       }
     } catch (error) {
       console.error('Error:', error);

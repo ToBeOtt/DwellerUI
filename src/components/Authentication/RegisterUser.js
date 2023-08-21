@@ -10,18 +10,13 @@ export default function RegisterUser(props) {
   const [householdOption, setHouseholdOption] = useState('none');
   const [registerHouseClicked, setRegisterHouseClicked] = useState(true);
   const [passwordsMatch, setPasswordsMatch] = useState(true); 
-
+  const navigate = useNavigate();
 
   const handleHouseholdOptionChange = (e) => {
     setHouseholdOption(e.target.value);
   };
 
- 
-
-  const navigate = useNavigate();
-
   const handleSignIn = async () => {
-
     if (password !== repeatPassword) {
       setPasswordsMatch(false); 
       return;
@@ -48,21 +43,17 @@ export default function RegisterUser(props) {
   
       if (response.ok) {
         const user = await response.json();
-        const jwtToken = user.token; 
         const Email = user.email;
-        
-        localStorage.setItem('token', jwtToken);
-        console.log(localStorage)
 
         if (householdOption === 'create') { 
-          navigate(`/registerHouse?Email=${Email}`);
+          navigate(`/registerHousePage?Email=${Email}`);
           
         } else if (householdOption === 'join') { 
-          navigate(`/registerHouseMember?Email=${Email}`);
+          navigate(`/registerHouseMemberPage?Email=${Email}`);
         }
         
       } else {
-          navigate('/error');
+          navigate('/ErrorPage');
       }
     } catch (error) {
       console.error('Error:', error);

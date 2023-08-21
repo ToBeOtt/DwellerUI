@@ -1,4 +1,4 @@
-export default function Error(props) {
+export default function ErrorPage(props) {
 
   return (
     <div>

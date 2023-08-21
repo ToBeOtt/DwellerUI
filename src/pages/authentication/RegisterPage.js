@@ -1,8 +1,7 @@
 import RegisterUser from '../../components/Authentication/RegisterUser';
     
-    function Register(){
+export default function RegisterPage(){
         return(
             <RegisterUser/>
         )
     }
-    export default Register;
