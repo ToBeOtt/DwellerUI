@@ -3,14 +3,15 @@
 const colors = require('tailwindcss/colors');
 
 const customColors = {
-  'dweller-gray': '#313131',
-  'dweller-bg-gray': '#818181',
-  'dweller-green': '#0E7A60',
-  'dweller-blue': '#3A517F',
+  'n': '#E49A3C', // Neutral color-scheme when not using household or neighbourhood
+  'hover-n': '#FC991A',
+  'hh': '#0F7B6A', // household
+  'hover-hh': '#134840',
+  'nbh': '#E17961', // neighbourhood
+  'hover-nbh': '#BF4E34',
+  'bread': '#403535',
   'dweller-pink': '#B77580',
   'dweller-text': '#DAD5D5',
-  'rose-500': '#F56565',
-  'cyan-500': '#38B2AC',
 };
 
 module.exports = {
@@ -18,14 +19,19 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
-    colors: {       // This is merging colors from Tailwind with my own custom defined colors.
+    extend: {
+      fontFamily: {
+        'logotext': ['"Anton"', 'sans-serif'],
+        'title': ['"Roboto Slab"', 'serif'],
+        'bread': ['"Fira Sans"', 'sans-serif'],
+    },
+    colors: {      
       ...colors,
       ...customColors,
     },
   },
   variants: {},
   plugins: [],
-};
+}}
 
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import DashboardAccordion  from './DashboardAccordion '
 import { useNavigate } from 'react-router-dom';
 import { useMeeting } from '../../hooks/useMeeting';
 import baseUrl from '../../config/apiConfig';
@@ -39,32 +38,66 @@ export default function Dashboard() {
 
 
   return (
-   
-    <>
-    <>
-    <DashboardAccordion />
-    </>
-    <div className="grid grid-cols-3 gap-4 md:w-full m-auto">
+   <>
       {userData  ? (
         <>
-        
-          <div className="span-col-1 border-1">
-            <h4 className="text-green-500">Användarinfo: </h4> <h4>{userData.user.alias}</h4>
-          </div>
-          
-          <div className="span-col-1 border-1">
-            <h4 className="text-green-500">Husinfo: </h4> <h4>{userData.house.name}</h4>
+          <div className="grid grid-rows-1 w-full"> 
+            <div className="row-span-1 bg-[#EFE7D0] min-h-[60vh]">
+              <div className="bg-[#EFE7D0] w-3/6 m-auto m-5 p-5">
+                <h4 className="font-serif text-title text-[#279A88]">Användarinfo: </h4> 
+                <p className="font-serif text-stone-900">{userData.user.alias}</p>
+
+                <h4 className="font-serif text-[#279A88]">Husinfo: </h4> 
+                <p className="text-stone-900 ">{userData.house.name}</p>
+                <p className="text-stone-900 ">{userData.house.name}</p>
+                <p className="text-stone-900 ">{userData.house.name}</p>
+
+              </div>
+            </div>
           </div>
 
-          <div className="span-col-1 border-1">
-            <h4 className="text-green-500">Nästa Möte:</h4> <h4>{meeting.meeting.dateOfMeeting}</h4>
-          </div>
-        </>
+          </>
       ) : (
         <p>Loading user data...</p>
       )}
-    </div>
+    
     </>
+        
   );
- 
 }
+{/* <div className="grid grid-rows-3 w-full">
+{userData  ? (
+  <>
+  
+    <div className="span-row-1 bg-[#EFE7D0] h-full">
+      <div className="bg-[#EFE7D0] w-3/6 m-auto">
+        <h4 className="text-[#279A88] mt-4 pl-8">Användarinfo: </h4> 
+        <p className="text-stone-900 pl-4">{userData.user.alias}</p>
+      </div>
+    </div>
+    
+    <div className="span-row-1 bg-[#A2C3B8] h-full">
+      <div className="bg-[#A2C3B8] w-3/6 m-auto">
+        <h4 className="text-[#279A88] mt-4 pl-8">Husinfo: </h4> 
+        <p className="text-stone-900 ">{userData.house.name}</p>
+        <p className="text-stone-900 ">{userData.house.name}</p>
+        <p className="text-stone-900 ">{userData.house.name}</p>
+        <p className="text-stone-900 ">{userData.house.name}</p>
+        <p className="text-stone-900 ">{userData.house.name}</p>
+         <p className="text-stone-900 ">{userData.house.name}</p>
+        <p className="text-stone-900 ">{userData.house.name}</p>
+        <p className="text-stone-900 ">{userData.house.name}</p>
+      </div>
+    </div>
+
+    <div className="span-row-1 bg-[#EBE28C]">
+      <div className="bg-[#EBE28C] w-3/6 m-auto">
+        <h4 className="text-[#279A88] mt-4 pl-8">Nästa Möte: </h4> 
+        <p className="text-stone-900 pl-4">{meeting.meeting.dateOfMeeting}</p>
+      </div>
+    </div>
+  </>
+) : (
+  <p>Loading user data...</p>
+)}
+</div> */}

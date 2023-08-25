@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import baseUrl from '../../config/apiConfig'; // Adjust the path as needed
+import baseUrl from '../../config/apiConfig';
 
 export default function RegisterUser(props) {
   const [email, setEmail] = useState('');
@@ -62,14 +62,17 @@ export default function RegisterUser(props) {
   
   return(
     <>
-{/* Email */}
-      <div className="flex justify-center">
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <div class="mb-4">
+<div className="mx-auto">
+
+{/* Register-form */}
+  <article>
+      <form class="bg-white border-t-8 border-n shadow-xl rounded p-10 m-10 xl:mt-5">
+        <div class="mb-3">
+  {/* Email */}   
           <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
             Username
           </label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+          <input class="shadow appearance-none border rounded text-xs w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="email" 
           type="text" 
           placeholder="name@mail.com" 
@@ -78,12 +81,12 @@ export default function RegisterUser(props) {
           />
         </div>
 
-{/* Alias */}
-        <div class="mb-4">
+  {/* Alias */}
+        <div class="mb-3">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="alias">
             Alias
           </label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+          <input class="shadow appearance-none border rounded text-xs w-2/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
           id="alias" 
           type="text" 
           placeholder="Namn som andra ser" 
@@ -92,12 +95,12 @@ export default function RegisterUser(props) {
           />
         </div>
 
-{/* Password */}
-        <div class="mb-6">
+  {/* Password */}
+        <div class="mb-3">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
             Password
         </label>
-        <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+        <input class="shadow appearance-none border border-red-500 rounded text-xs w-2/3 py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" 
         id="password" 
         type="password" 
         placeholder="******************" 
@@ -108,12 +111,12 @@ export default function RegisterUser(props) {
         <p class="text-dweller-pink text-xs italic">Please choose a password.</p>
         </div>
 
- {/* Repeat password*/}
-        <div class="mb-6">
+  {/* Repeat password*/}
+        <div class="mb-3">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
             Password
         </label>
-        <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+        <input class="shadow appearance-none border border-red-500 rounded text-xs w-2/3 py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline" 
         id="repeatPassword" 
         type="password" 
         placeholder="******************" 
@@ -127,19 +130,21 @@ export default function RegisterUser(props) {
         <hr classname="rounded-md"></hr>
         <fieldset className="mt-3">
         <legend>Hur vill du ansluta ditt hushåll?</legend>
-        <div>
-          <input
-            type="radio"
-            id="createHouse"
-            name="householdOption"
-            value="create"
-            checked={householdOption === 'create'}
-            onChange={handleHouseholdOptionChange}
-          />
-          <label className="text-gray-700 text-sm font-bold mx-2" htmlFor="createHouse">
-            Skapa hushåll
-          </label>
-        </div>
+          <div>
+            <input
+              type="radio"
+              id="createHouse"
+              name="householdOption"
+              value="create"
+              checked={householdOption === 'create'}
+              onChange={handleHouseholdOptionChange}
+            />
+            <label 
+              className="text-gray-700 text-sm font-bold mx-2" 
+              htmlFor="createHouse">
+                Skapa hushåll
+            </label>
+          </div>
 
         <div>
           <input
@@ -150,7 +155,9 @@ export default function RegisterUser(props) {
             checked={householdOption === 'join'}
             onChange={handleHouseholdOptionChange}
           />
-          <label className="text-gray-700 text-sm font-bold mx-2" htmlFor="joinHousehold">
+          <label 
+            className="text-gray-700 text-sm font-bold mx-2 mb-2" 
+            htmlFor="joinHousehold">
             Gå med i hushåll
           </label>
         </div>
@@ -158,16 +165,17 @@ export default function RegisterUser(props) {
         <hr classname="rounded-md"></hr>
     
         
-{/* SignIn */}
-        <div className="flex items-center justify-between">
-        <button className="bg-teal-900 hover:bg-teal-800 text-dweller-text font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
-        type="button"
-        onClick={handleSignIn}>
+  {/* SignIn */}
+        <div className="flex items-center justify-between mt-3">
+        <button 
+          className="bg-n border-1 border-black hover:bg-hover-n text-sm text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+          type="button"
+          onClick={handleSignIn}>
             Registrera
         </button>
         </div>
 
-{/* Display an error message if passwords don't match */}
+  {/* Display an error message if passwords don't match */}
         {!passwordsMatch && (
             <p className="text-red-500 font-bold text-xs mt-2">Angivna lösenord är inte identiska</p>
           )}
@@ -178,7 +186,10 @@ export default function RegisterUser(props) {
 
 
     </form>
-</div>    
+  </article>
+</div>
+
+
     </>
   )
 }

@@ -38,10 +38,10 @@ export default function Meeting() {
         <>
         <div className="grid grid-cols-2 gap-4">
           <div className="col-span-1">
-            <h2 className="text-red-500">Meeting Details</h2>
-            <p className="text-red-300">Meeting ID: {meeting.meeting.meetingId}</p>
-            <p className="text-red-300">Date of Meeting: {meeting.meeting.dateOfMeeting}</p>
-            <p className="text-red-300">Meeting Status: {meeting.meeting.meetingStatus}</p>
+            <h2 className="text-red-700">Meeting Details</h2>
+            <p className="text-red-700">Meeting ID: {meeting.meeting.meetingId}</p>
+            <p className="text-red-700">Date of Meeting: {meeting.meeting.dateOfMeeting}</p>
+            <p className="text-red-700">Meeting Status: {meeting.meeting.meetingStatus}</p>
                 <form>
                     <div className="grid justify-content-start mt-4">
                         <AddMeetingPointButton />
@@ -52,7 +52,7 @@ export default function Meeting() {
           <div className="col-span-1">
           <h3 className="text-red-700">Meeting Points:</h3>
           {meetingPoints.map((point, index) => (
-            <div key={index} className="gap-4 text-stone-200">
+            <div key={index} className="gap-4 text-red-700">
               <p>Punkt {index + 1}:</p>
               <p>Meeting Point ID: {point.meetingPointId}</p>
               <p>Name: {point.name}</p>

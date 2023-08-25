@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import baseUrl from '../../config/apiConfig'; // Adjust the path as needed
+import baseUrl from '../../config/apiConfig';
 
 export default function RegisterHouseMember() {
   const location  = useLocation();
@@ -36,12 +36,14 @@ export default function RegisterHouseMember() {
 
   return (
     <>
-    <div className="flex justify-center">
-          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" >
-          <div className="mb-4">
+      <div className="mx-auto">
+        <form class="bg-white border-t-8 border-n shadow rounded p-10 m-10 xl:mt-5">
+          <section className="mb-4">
+            
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="invitationCode">
               Inbjudningskod
             </label>
+            
             <input 
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
               id="invitationCode" 
@@ -50,17 +52,15 @@ export default function RegisterHouseMember() {
               value={invitation}
               onChange={(e) => setInvitation(e.target.value)}
             />
-          </div>
-            
-          <div className="flex items-center justify-between">
+          </section>
+          
           <button
-            className="bg-teal-900 hover:bg-teal-800 text-dweller-text font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-            onClick={handleRegister}
-            >
-          Gåd med hushåll
-        </button>
-          </div>
+              className="bg-n hover:bg-hover-n text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="button"
+              onClick={handleRegister}
+              >
+            Gåd med hushåll
+          </button>
         </form>
       </div>
     </>

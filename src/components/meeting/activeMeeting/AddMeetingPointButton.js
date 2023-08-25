@@ -10,7 +10,7 @@ export default function AddMeetingPointButton(props) {
     return(
     <>
         <button 
-        className="block mx-auto px-4 py-1 text-sm text-white-600 
+        className="block mx-auto px-4 py-1 text-sm text-black-600 
                     font-semibold rounded-full border 
                     border-black-200 hover:text-white 
                     hover:bg-slate-700 hover:border-transparent 
