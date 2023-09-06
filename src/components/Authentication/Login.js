@@ -41,7 +41,7 @@ export default function Login(props) {
 
   return (
     <>
-    <div className="mx-auto w-2/6">
+    <div className="mx-auto w-1/4">
 
 {/* Login-form */}
       <article>

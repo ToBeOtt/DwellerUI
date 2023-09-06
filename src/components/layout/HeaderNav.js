@@ -43,10 +43,10 @@ export default function HeaderNav() {
                     {openNeighbourhoodNav && 
                     <>
                     <div>
-                        <h1 className="font-LogoText text-6xl text-[#E17961] mx-5">
+                        <h1 className="font-logoText text-6xl text-[#E17961] mx-5">
                             dwellers
                         </h1>
-                        <span className="font-LogoText text-md text-[#E17961] mx-5">
+                        <span className="font-logoText text-md text-[#E17961] mx-5">
                             grannskap 
                         </span>  
                     </div>
@@ -55,10 +55,10 @@ export default function HeaderNav() {
                     {openHouseholdNav && 
                     <>
                     <div>
-                        <h1 className="font-LogoText text-6xl text-[#279A88] mx-5">
+                        <h1 className="font-logoText text-6xl text-[#279A88] mx-5">
                             dwellers
                         </h1>
-                        <span className="font-LogoText text-md text-[#279A88] mx-5">
+                        <span className="font-logoText text-md text-[#279A88] mx-5">
                             hushåll
                         </span>  
                     </div>
@@ -68,10 +68,10 @@ export default function HeaderNav() {
                     {!openHouseholdNav && !openNeighbourhoodNav && (
                         <>
                         <div>
-                            <h1 className="font-LogoText text-6xl text-[#E49A3C] mx-5">
+                            <h1 className="font-logoText text-6xl text-[#E49A3C] mx-5">
                                 dwellers
                             </h1>
-                            <span className="font-LogoText text-md text-[#E49A3C] mx-5">
+                            <span className="font-logoText text-md text-[#E49A3C] mx-5">
                               
                             </span>  
                         </div>

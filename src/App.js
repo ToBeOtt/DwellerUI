@@ -8,13 +8,13 @@ import LoginPage from './pages/authentication/LoginPage';
 import RegisterPage from './pages/authentication/RegisterPage';
 import RegisterHousePage from './pages/authentication/RegisterHousePage';
 import RegisterHouseMemberPage from './pages/authentication/RegisterHouseMemberPage';
-import MeetingPage from './pages/household/meetings/MeetingPage';
+import NotesPage from './pages/household/notes/NotesPage';
 import Dashboard from './pages/household/dashboard/DashboardPage';
 import ChatPage from './pages/household/chat/ChatPage';
 import CalendarPage from './pages/household/calendar/CalendarPage';
 import ErrorPage from './pages/errorhandling/ErrorPage';
-import AddMeetingPointPage from './pages/household/meetings/AddMeetingPointPage';
-
+import AddNotePage from './pages/household/notes/AddNotePage';
+import AddNoteholderPage from './pages/household/notes/AddNoteholderPage';
 
 export const AuthContext = createContext();
 
@@ -48,9 +48,9 @@ function App() {
 
               <Route path='/DashboardPage' element={<Dashboard/>} />
 
-              <Route path='/MeetingPage' element={ <MeetingPage /> } />
-              
-              <Route path='/AddMeetingPointPage' element={<AddMeetingPointPage /> } />
+              <Route path='/NotesPage' element={ <NotesPage /> } />
+                <Route path='/AddNotePage' element={<AddNotePage /> } />
+                <Route path='/AddNoteholderPage' element={<AddNoteholderPage /> } />
 
               <Route path='/ChatPage' element={<ChatPage /> } />
 

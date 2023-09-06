@@ -18,7 +18,7 @@ export default function NavHouse() {
           <div>
               <span className="text-xs text-left">
               <Link 
-                to="/MeetingPage"
+                to="/NotesPage"
                 className="flex justify-center text-hh hover:text-hover-hh no-underline mr-6">
                   <MeetingIcon />
                </Link>

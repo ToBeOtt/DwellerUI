@@ -9,7 +9,7 @@ const customColors = {
   'hover-hh': '#134840',
   'nbh': '#E17961', // neighbourhood
   'hover-nbh': '#BF4E34',
-  'bread': '#403535',
+  'contentText': '#403535',
   'dweller-pink': '#B77580',
   'dweller-text': '#DAD5D5',
 };
@@ -21,9 +21,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'logotext': ['"Anton"', 'sans-serif'],
-        'title': ['"Roboto Slab"', 'serif'],
-        'bread': ['"Fira Sans"', 'sans-serif'],
+        'logoText': ['"Anton"', 'sans-serif'],
+        'titleFont': ['"Roboto Slab"', 'serif'],
+        'contentFont': ['"Fira Sans"', 'sans-serif'],
     },
     colors: {      
       ...colors,
