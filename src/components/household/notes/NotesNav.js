@@ -3,36 +3,73 @@ import { Link } from 'react-router-dom';
 export default function NotesNav() {
     return (
     <>
-    <div className="row-span-1 flex justify-center space-x-4">
+        <input type="text" 
+            className="pr-2 pl-2 text-xs rounded z-0 focus:shadow focus:outline-none" 
+            placeholder="Sök.."/>
             
-        <input type="text" class="pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="#hashtag"/>
-        <div class="absolute top-4 right-3">
-            <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
+        <div>
+            <Link
+            to="/AddNotePage"
+                    className="text-xs text-stone-500 font-bold py-2 px-2 rounded"
+                    type="button"              
+                    >
+                Ny anteckning
+            </Link>
         </div>
 
-        <Link
-        to="/AddNotePage"
-                className="bg-teal-900 hover:bg-teal-800 text-dweller-text font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        <div>
+            <Link
+                to="/AddNoteholderPage"
+                className="text-xs text-stone-500 font-bold py-2 px-2 rounded"
                 type="button"              
                 >
-            Ny anteckning
-        </Link>
+                Ny anteckningsbok
+            </Link>
+        </div>
 
-        <Link
-            to="/AddNoteholderPage"
-            className="bg-teal-900 hover:bg-teal-800 text-dweller-text font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"              
-            >
-            Ny anteckningsbok
-        </Link>
+        <div>
+            <Link
+                to="/AddNotePage"
+                className="text-xs text-stone-500 font-bold py-2 px-2 rounded"
+                type="button"              
+                >
+                Arkiv
+            </Link>
+        </div>
 
-        <Link
-            to="/AddNotePage"
-            className="bg-teal-900 hover:bg-teal-800 text-dweller-text font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"              
-            >
-            Arkiv
-        </Link>
-    </div>
+         
+        <div className="text-xs text-stone-500 font-bold py-2 px-2 rounded mt-5">
+            <h1>Kategorier</h1>
+        </div>
+
+        <div>
+            <Link
+                to="/AddNotePage"
+                className="text-xs text-stone-500 px-2 rounded"
+                type="button"              
+                >
+                Husmöten
+            </Link>
+        </div>
+        <div>
+            <Link
+                to="/AddNotePage"
+                className="text-xs text-stone-500 px-2 rounded"
+                type="button"              
+                >
+                Projekt
+            </Link>
+        </div>
+
+        <div>
+            <Link
+                to="/AddNotePage"
+                className="text-xs text-stone-500 px-2 rounded"
+                type="button"              
+                >
+                Att göra
+            </Link>
+        </div>
+
     </>
     )}

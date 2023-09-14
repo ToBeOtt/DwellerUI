@@ -55,8 +55,8 @@ export default function AddNote(props) {
 
     return (
     <>
-    <div className="flex justify-center">
-          <form className="bg-white rounded px-8 pt-6 pb-8 mb-4" >
+    <div className="">
+          <form className="bg-white rounded pb-8 mb-4" >
             
               <label 
                   className="block text-gray-700 text-sm font-bold mb-2" 
@@ -64,7 +64,7 @@ export default function AddNote(props) {
                 Titel
               </label>
               <input 
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" 
                 id="title" 
                 type="text" 
                 placeholder="Rubrik" 
@@ -79,7 +79,7 @@ export default function AddNote(props) {
               Beskrivning:
             </label>
             <textarea
-              className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="mb-4shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="noteDesc"
               placeholder="Beskrivning"
               value={desc}
@@ -94,7 +94,7 @@ export default function AddNote(props) {
                 Status
             </label>
               <select
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="status"
                 value={noteStatus}
                 onChange={(e) => setNoteStatus(parseInt(e.target.value))}
@@ -111,7 +111,7 @@ export default function AddNote(props) {
                 Prioritet
             </label>
               <select
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-4 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="prio"
                 value={notePriority}
                 onChange={(e) => setNotePriority(parseInt(e.target.value))}
@@ -133,7 +133,7 @@ export default function AddNote(props) {
             </button>
 
             <button
-                className="bg-teal-900 hover:bg-teal-800 text-dweller-text font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-teal-900 hover:bg-teal-800 text-dweller-text font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline "
                 type="button"
                 >
               Avbryt

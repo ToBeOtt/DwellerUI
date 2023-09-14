@@ -39,18 +39,13 @@ export default function AllNoteholders() {
 
     return (
         <>
-          <h6 className="font-titleFont font-bold text-black text-left mb-4">
-            Anteckningssamlingar
-          </h6>
     
           {Array.isArray(noteholders) && noteholders.map((point, index) => (
-            <div className="flex space-x-4 items-center justify-start" key={index}>
-             <button 
-                className="flex flex-row items-center"
-                onClick={() => handleModalOpen(point.noteholderId)}>
-              <NoteholderIcon />
+            <div className="text-xs text-stone-500 font-bold py-2 px-2 rounded"
+            type="button" 
+                onClick={() => handleModalOpen(point.noteholderId)}
+            >
               <p className="ml-2">{point.name}</p>
-              </button> 
             </div>
           ))}
     

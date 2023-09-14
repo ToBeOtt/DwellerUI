@@ -44,13 +44,13 @@ export default function AddNoteholder() {
 
     return (
     <>
-    <div className="flex justify-center">
-          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-2/5" >
+    <div className="">
+          <form className="bg-white rounded pb-8 mb-4" >
                 {/* Name */}
                 <label 
                     className="block text-gray-700 text-sm font-bold mb-2" 
                     htmlFor="title">
-                Namn för anteckningssamling
+                Titel
                 </label>
                 <input 
                     className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
@@ -63,12 +63,12 @@ export default function AddNoteholder() {
         
                 {/* Status */}
                 <label 
-                    className="block text-gray-700 text-sm font-bold mb-2" 
+                    className="block text-gray-700 text-sm font-bold mt-4 mb-1" 
                     htmlFor="noteholderTag">
-                    Status
+                    Kategori
                 </label>
                 <select
-                    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
                     id="noteholderTag"
                     value={noteholderTag}
                     onChange={(e) => setNoteholderTag(parseInt(e.target.value))}

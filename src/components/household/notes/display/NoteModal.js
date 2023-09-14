@@ -31,7 +31,7 @@ const NoteModal = ({ noteId, isOpen, onClose, }) => {
         try {
           const result = await NoteService.removeNote(noteId);
           if (result) {
-            navigate('/NotePage');
+            navigate('/NotesPage');
           } else {
           }
         } catch (error) {

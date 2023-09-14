@@ -1,30 +1,16 @@
-import { useState, useEffect } from "react";
+import NavHouse from './NavHouse';
+
 export default function Footer() {
-
-    return (
-        <>
-        <div className="grid grid-rows-1 w-full bottom-0 min-h-[20vh]">
-            <div className="span-row-1 bg-[#ffffff]">
-
+  
+      return (   
+      <>
+        <div className="w-full fixed bottom-0 bg-[#ffffff] pt-3 border-t-2 border-black">
+            <>
+            <div className="span-col-1 flex justify-center space-x-6">
+                <NavHouse />
             </div>
-        </div>  
-
-        <div className="grid grid-cols-3 w-full text-center sticky bottom-0 bg-[#ffffff]">
-            
-            <div className="border">
-            </div>
-            
-            <div className="border">
-            
-            </div>
-
-            <div className="border">
-           
-            </div>
-
-            </div>
-        </>
-    )
-}
-
-// FBCABD bg-gradient-to-t from-[#ffffff] to-[#FBCABD]"
+            </>
+        </div>
+      </>
+      )
+  }

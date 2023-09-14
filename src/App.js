@@ -11,10 +11,7 @@ import RegisterHouseMemberPage from './pages/authentication/RegisterHouseMemberP
 import NotesPage from './pages/household/notes/NotesPage';
 import Dashboard from './pages/household/dashboard/DashboardPage';
 import ChatPage from './pages/household/chat/ChatPage';
-import CalendarPage from './pages/household/calendar/CalendarPage';
 import ErrorPage from './pages/errorhandling/ErrorPage';
-import AddNotePage from './pages/household/notes/AddNotePage';
-import AddNoteholderPage from './pages/household/notes/AddNoteholderPage';
 
 export const AuthContext = createContext();
 
@@ -49,12 +46,8 @@ function App() {
               <Route path='/DashboardPage' element={<Dashboard/>} />
 
               <Route path='/NotesPage' element={ <NotesPage /> } />
-                <Route path='/AddNotePage' element={<AddNotePage /> } />
-                <Route path='/AddNoteholderPage' element={<AddNoteholderPage /> } />
 
               <Route path='/ChatPage' element={<ChatPage /> } />
-
-              <Route path='/CalendarPage' element={<CalendarPage /> } />
 
               <Route path='/ErrorPage' element={<ErrorPage/>}/>
           </Routes>
