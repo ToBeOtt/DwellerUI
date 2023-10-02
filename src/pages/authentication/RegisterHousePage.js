@@ -1,4 +1,4 @@
-import RegisterHouse from '../../components/Authentication/RegisterHouse';
+import RegisterHouse from '../../components/authentication/RegisterHouse';
     
     export default function RegisterHousePage(){
         return(

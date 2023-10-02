@@ -2,9 +2,9 @@ import baseUrl from "../../../config/apiConfig";
 
 const NoteService = {
 
-  getNotes: async () => {
+  getNotes: async (noteCategory) => {
     try {
-      const response = await fetch(`${baseUrl}/notes/GetNotes`, {
+      const response = await fetch(`${baseUrl}/notes/GetNotes?noteCategory=${noteCategory}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -51,9 +51,9 @@ const NoteService = {
     }
   },
 
-  getNoteholders: async () => {
+  getNoteholders: async (noteCategory) => {
     try {
-      const response = await fetch(`${baseUrl}/notes/GetNoteholders`, {
+      const response = await fetch(`${baseUrl}/notes/GetNoteholders?noteCategory=${noteCategory}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const NoteService = {
       } else if (response.status === 401) {
         throw new Error('Unauthorized');
       } else {
-        throw new Error('Error fetching notes');
+        throw new Error('Error fetching noteholders');
       }
     } catch (error) {
       console.error('Error:', error);

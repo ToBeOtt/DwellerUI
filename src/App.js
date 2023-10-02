@@ -2,6 +2,7 @@ import './App.css';
 import { createContext, useState } from 'react';
 import HeaderNav from './components/layout/HeaderNav.js';
 import Footer from './components/layout/Footer.js';
+import FooterPage from './components/layout/FooterPage.js';
 import MainLayout from './components/layout/MainLayout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/authentication/LoginPage';
@@ -14,7 +15,6 @@ import ChatPage from './pages/household/chat/ChatPage';
 import ErrorPage from './pages/errorhandling/ErrorPage';
 
 export const AuthContext = createContext();
-
 function App() {
     
     const [loggedIn, setLoggedIn] = useState(
@@ -27,7 +27,6 @@ function App() {
           localStorage.clear();
       }
     }
-
 
   return (
     <AuthContext.Provider value={[loggedIn, changeLoggedIn]}>
@@ -52,6 +51,7 @@ function App() {
               <Route path='/ErrorPage' element={<ErrorPage/>}/>
           </Routes>
       </MainLayout>
+      <FooterPage/>
       <Footer />
       </BrowserRouter>
       </AuthContext.Provider>

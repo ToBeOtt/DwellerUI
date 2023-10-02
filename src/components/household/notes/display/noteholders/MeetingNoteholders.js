@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import NoteholderModal from './NoteholderModal.js';
-import NoteService from '../NoteService.js';
-import { NoteholderIcon } from '../../../layout/svg/FormIcons.js';
+import NoteService from '../../NoteService.js';
 
-export default function AllNoteholders() {
-    const [noteholders, setNoteholders] = useState([]);
-    const navigate = useNavigate();
+export default function MeetingNoteholders() {
+    const [meetingNoteholders, setMeetingNoteholders] = useState([]);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedNoteholderId, setSelectedNoteholderId] = useState(null);
@@ -22,25 +19,18 @@ export default function AllNoteholders() {
     };
     
     useEffect(() => {
-        NoteService.getNoteholders()
-          .then(data => {
-            const noteholderData = data.noteholders;
-            setNoteholders(noteholderData);
-          })
-          .catch(error => {
-            if (error.message === 'Unauthorized') {
-              navigate('/LoginPage');
-            } else {
-              console.error('Error:', error);
-            }
-          });
-      }, [navigate]);
+      NoteService.getNoteholders(0)
+        .then(data => {
+          const noteholderData = data.noteholders;
+          setMeetingNoteholders(noteholderData);
+        });
+    }, []);
 
 
     return (
         <>
     
-          {Array.isArray(noteholders) && noteholders.map((point, index) => (
+          {Array.isArray(meetingNoteholders) && meetingNoteholders.map((point, index) => (
             <div className="text-xs text-stone-500 font-bold py-2 px-2 rounded"
             type="button" 
                 onClick={() => handleModalOpen(point.noteholderId)}

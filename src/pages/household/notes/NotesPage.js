@@ -1,19 +1,21 @@
-import NotesNav from '../../../components/household/notes/NotesNav';
-import AllNoteholders from '../../../components/household/notes/display/AllNoteholders';
-import AllNotes from '../../../components/household/notes/display/AllNotes';
-import ProjectNotes from '../../../components/household/notes/display/ProjectNotes';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import AllNotes from '../../../components/household/notes/display/notes/AllNotes';
+import ProjectNotes from '../../../components/household/notes/display/notes/ProjectNotes';
+import TodoNotes from '../../../components/household/notes/display/notes/TodoNotes';
+import MeetingNotes from '../../../components/household/notes/display/notes/MeetingNotes';
 import AddNote from '../../../components/household/notes/add/AddNote';
 import AddNoteholder from '../../../components/household/notes/add/AddNoteholder';
+import SubMenu from '../../../components/layout/SubMenu';
+import ContentLayout from '../../../components/layout/ContentLayout'
 
 export default function NotesPage() {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const added = new URLSearchParams(location.search).get('added');
+  //Navigation
+  const [activeView, setActiveView] = useState('allNotes');
 
-    //Navigation
-    const [activeView, setActiveView] = useState('allNotes');
+  const handleShowAllNotes = () => {
+    setActiveView('allNotes');
+  };
 
   const handleNewNoteholder = () => {
     setActiveView('newNoteholder');
@@ -23,109 +25,147 @@ export default function NotesPage() {
     setActiveView('newNote');
   };
 
+  const handleNotesByMeeting = () => {
+    setActiveView('meetingNotes');
+  };
+
   const handleNotesByProject = () => {
     setActiveView('projectNotes');
   };
 
+  const handleNotesByTodo = () => {
+    setActiveView('todoNotes');
+  };
+
+
 
   
-    return (
-    <main className="grid grid-cols-6 w-5/6 mx-auto xl:mt-5">
+  
+return (
+<>
+<SubMenu> 
+    <div className="text-xs font-titleFont text-stone-500 py-2 rounded border-x-2 border-stone-500 px-5">
+        <h1 className="my-1 tracking-wider font-logoText text-stone-400 underline">kategorier</h1>
 
-        <section className="col-span-1"></section> 
-        <section className="col-span-1 mt-4">
-    <>
-        <input type="text" 
-            className="pr-2 pl-2 text-sm rounded z-0 focus:shadow focus:outline-none bg-stone-200 w-20" 
-            placeholder="Sök.."/>
+        <button
+            className="block p-0.5"
+            onClick={() => {
+                handleShowAllNotes(); 
+
+              }}
+            >
+            Alla
+        </button>
+
+        <button
+            className="block p-0.5"
+            onClick={() => {
+                handleNotesByMeeting(); 
+       
+              }}                
+            >
+            Husmöten
+        </button>
+    
+        <button
+            to="/AddNotePage"
+            className="block p-0.5"
+  
+            >
+            Kalender
+        </button>
+
+        <button
+            className="block p-0.5"
+            onClick={() => {
+                handleNotesByProject(); 
+ 
+              }}              
+            >
+            Projekt
+        </button>
+    
+        <button
+            className="block p-0.5"
+            onClick={() => {
+                handleNotesByTodo(); 
             
-        <div>
-            <button
-                className="text-sm text-stone-500 px-2 rounded"
-                onClick={handleNewNote}               
-                    >
-                Ny anteckning
-            </button>
-        </div>
+              }}                        
+            >
+            Att göra
+        </button>
+    </div>
 
-        <div>
-            <button
-                className="text-sm text-stone-500 px-2 rounded" 
-                onClick={handleNewNoteholder}            
-                >
-                Ny anteckningsbok
-            </button>
-        </div>
+    <div className="text-xs font-titleFont text-stone-500 py-2 rounded border-x-2 border-stone-500 px-3">
+        <h1 className="my-1 tracking-wider font-logoText text-stone-400 underline">
+            anteckningar
+        </h1>
 
-        <div>
-            <Link
-                to="/AddNotePage"
-                className="text-sm text-stone-500 px-2 rounded"
-                type="button"              
-                >
-                Arkiv
-            </Link>
-        </div>
-
-         
-        <div className="text-sm text-stone-500 font-bold py-1 px-2 rounded mt-5">
-            <h1>Kategorier</h1>
-        </div>
-
-        <div>
-            <button
-                to="/AddNotePage"
-                className="text-sm text-stone-500 px-2 rounded"
-                type="button"              
-                >
-                Husmöten
-            </button>
-        </div>
-
-        <div>
-            <button
-                to="/AddNotePage"
-                className="text-sm text-stone-500 px-2 rounded"
-                type="button"              
-                >
-                Kalender
-            </button>
-        </div>
-
-        <div>
-            <button
-                className="text-sm text-stone-500 px-2 rounded"
-                onClick={handleNotesByProject}                 
-                >
-                Projekt
-            </button>
-        </div>
-
-        <div>
-            <button
-                className="text-sm text-stone-500 px-2 rounded"
-                type="button"              
-                >
-                Att göra
-            </button>
-        </div>
-        </>
-        </section> 
         
-        <section className="col-span-3 w-full h-auto rounded p-2 m-2 flex justify-start">
+        <button
+            className="block p-0.5"
+            onClick={() => {
+                handleNewNote(); 
+        
+              }}           
+                >
+            Ny anteckning
+        </button>
+
+        <button
+            className="block p-0.5" 
+            onClick={() => {
+                handleNewNoteholder(); 
+           
+              }}         
+            >
+            Ny anteckningsbok
+        </button>
+
+        <Link
+            to="/AddNotePage"
+            className="block p-0.5"
+            onClick={() => {
+        
+              }}               
+            >
+            Arkiv
+        </Link>
+    </div>
+
+    <div  className="text-xs font-titleFont text-stone-500 px-3 py-2">        
+            <input type="text" 
+                className="pr-2 pl-2 text-sm rounded focus:shadow focus:outline-none 
+                rounded border-x-2 border-stone-500 py-2 h-6" 
+                placeholder="Sök.."/>
+         </div>
+</SubMenu>
+
+<ContentLayout> 
+    <div className="">
         {activeView === 'newNoteholder' ? (
-          <AddNoteholder />
-        ) : activeView === 'newNote' ? (
-          <AddNote />
-        ) : activeView === 'projectNotes' ? (
+        <AddNoteholder />
+        ): 
+            activeView === 'allNotes' ? (
+            <AllNotes />
+        ):
+            activeView === 'newNote' ? (
+            <AddNote />
+        ): 
+            activeView === 'meetingNotes' ? (
+            <MeetingNotes />
+        ): 
+            activeView === 'projectNotes' ? (
             <ProjectNotes />
-          )
+        ): 
+            activeView === 'todoNotes' ? (
+            <TodoNotes />
+        )
         : (
-          <AllNotes />
+        <AllNotes />
         )}
-      </section>
-        <section className="col-span-1"></section> 
-    </main>
-            
+    </div>
+</ContentLayout> 
+ </>    
     );
 }

@@ -7,20 +7,22 @@ export default function HeaderNav() {
     const [loggedIn, setLoggedIn] = useContext(AuthContext);
 
     return (
-    <div className="grid grid-cols-3 w-full text-center bg-[#ffffff]">
-        <div className="col-span-1"></div>
+    <div className="flex flex-col w-full text-center bg-[#313131]">   
 
-        <div className="bg-[#ffffff] flex justify-center col-span-1">
-            <h1 className="font-logoText text-6xl text-[#134840] mx-5">
+        {/* Logo */}
+        <div className="block self-center">
+            <h1 className="font-logoText text-6xl text-[#0E7A60] mx-5">
                 dwellers
             </h1>
         </div>
-        <div className="col-span-1 flex justify-start">
+
+        {/* Logged in / Logged out */}
+        <div className="flex self-center block py-1 mx-5 text-stone-500 space-x-5">
         {loggedIn ? (
                 <>
                 <Link
                     to="/loginPage" 
-                    className="py-3 mx-5 text-sm font-semibold leading-6 text-black no-underline mx-3"
+                    className="text-sm font-semibold leading-6 no-underline"
                     onClick={() => {
                     console.log('logging out');
                     setLoggedIn(false);
@@ -34,12 +36,12 @@ export default function HeaderNav() {
                 <>
                 <Link 
                     to="/loginPage" 
-                    className="py-3 text-sm font-semibold text-black no-underline hover:text-hover-n mx-3">
+                    className="text-sm font-semibold hover:text-hover-n no-underline">
                     Log in <span aria-hidden="true">&rarr;</span>
                 </Link>
                 <Link  
                     to="/registerPage" 
-                    className="py-3 text-sm font-semibold text-black no-underline hover:text-hover-n mx-3">
+                    className="text-sm font-semibold no-underline hover:text-hover-n">
                     Register
                 </Link>
                 </>

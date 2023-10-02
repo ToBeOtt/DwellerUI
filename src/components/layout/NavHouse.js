@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { ChatIcon, CalendarIcon, MeetingIcon, HouseholdIcon, NeighbourhoodIcon } from './svg/NavbarIcons';
+import { ChatIcon, HouseholdIcon, NeighbourhoodIcon } from './svg/NavbarIcons';
 
 export default function NavHouse() {
   return (
          <>
           <div>
-              <span className="text-xs text-left">
+              <span className="text-xs text-left text-stone-400">
               <Link 
                 to="/NotesPage"
                 className="flex justify-center text-hh hover:text-hover-hh no-underline mr-6">
@@ -16,7 +16,7 @@ export default function NavHouse() {
           </div>
 
           <div>
-              <span className="text-xs text-left">
+              <span className="text-xs text-left text-stone-400">
               <Link 
                 to="/ChatPage"
                 className="flex justify-center text-hh hover:text-hover-hh no-underline mr-6">
@@ -27,7 +27,7 @@ export default function NavHouse() {
           </div>
 
           <div>
-              <span className="text-xs text-left">
+              <span className="text-xs text-left text-stone-400">
 
               <Link 
                   to="/CalendarPage" 
@@ -40,4 +40,3 @@ export default function NavHouse() {
           </>
   );
 }
-

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import baseUrl from '../../../../config/apiConfig';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function AddNoteholder() { 
 
     const [name, setName] = useState('');
-    const [noteholderTag, setNoteholderTag] = useState(null);
+    const [category, setCategory] = useState(null);
 
     
     const location = useLocation();
@@ -23,7 +23,7 @@ export default function AddNoteholder() {
             },
             body: JSON.stringify({
                 name,
-                noteholderTag
+                category
             }),
           });
       
@@ -46,42 +46,33 @@ export default function AddNoteholder() {
     <>
     <div className="">
           <form className="bg-white rounded pb-8 mb-4" >
-                {/* Name */}
-                <label 
-                    className="block text-gray-700 text-sm font-bold mb-2" 
-                    htmlFor="title">
-                Titel
-                </label>
                 <input 
-                    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                    className="mb-2 block shadow-sm appearance-none border rounded py-1 px-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline" 
                     id="title" 
                     type="text" 
-                    placeholder="Rubrik" 
+                    placeholder="Titel" 
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     />
         
-                {/* Status */}
-                <label 
-                    className="block text-gray-700 text-sm font-bold mt-4 mb-1" 
-                    htmlFor="noteholderTag">
-                    Kategori
-                </label>
+
                 <select
-                    className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+                    className="mb-2 shadow-sm appearance-none border rounded py-1 px-3 text-gray-400 text-sm leading-tight focus:outline-none focus:shadow-outline mb-3"
                     id="noteholderTag"
-                    value={noteholderTag}
-                    onChange={(e) => setNoteholderTag(parseInt(e.target.value))}
+                    value={category}
+                    placeholder="Titel"
+                    onChange={(e) => setCategory(e.target.value)}
                     >
-                    <option value="0">Ej definerad</option>
-                    <option value="1">Möte</option>
-                    <option value="2">Projekt</option>
-                    <option value="3">Todo</option>
-                </select>
-        
+                      <option value="">Kategori</option>
+                      <option value={0}>Husmöten</option>
+                      <option value={1}>Projekt</option>
+                      <option value={2}>Att göra</option>
+                      <option value={3}>Kalender</option>
+                    </select>
+
             <div className="flex items-center justify-between">
                 <button
-                    className="bg-teal-900 hover:bg-teal-800 text-dweller-text font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="bg-teal-900 hover:bg-teal-800 text-dweller-text text-sm font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="button"
                     onClick={HandleAddPoint}
                     >

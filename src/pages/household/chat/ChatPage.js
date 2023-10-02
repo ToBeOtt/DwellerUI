@@ -1,60 +1,38 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import AddNewConversation from '../../../components/household/chat/AddNewConversation';
+import SubMenu from '../../../components/layout/SubMenu'
+import ContentLayout from '../../../components/layout/ContentLayout'
+import ViewConversation from '../../../components/household/chat/ViewConversation';
 
 export default function ChatPage() { 
     const [activeView, setActiveView] = useState('chat');
 
-    const handleNewNoteholder = () => {
-        setActiveView('newNoteholder');
+
+    const handleNewChat = () => {
+        setActiveView('newChat');
     };
+  
+return (
+<>
+  <SubMenu> 
+    <div className="text-xs font-titleFont text-stone-600 py-2 rounded border-x-2 border-stone-500 px-3">
+        <h1 className="my-1 tracking-wider font-logoText text-stone-400 underline">Konversationer</h1>
 
-    const handleNewNote = () => {
-        setActiveView('newNote');
-    };
-
-    return (
-    <main className="grid grid-cols-6 w-5/6 mx-auto xl:mt-5">
-
-        <section className="col-span-1"></section> 
-        <section className="col-span-1 mt-4">
-    <> 
-    <div>
         <button
-            className="text-xs text-stone-500 py-2 px-2 rounded"
-            onClick={handleNewNote}               
-                >
-            Hushåll
-        </button>
-    </div>
-
-    <div className="text-xs text-stone-500 font-bold pt-4 px-2 rounded">
-        Pågående
-    </div>
-    <div>
-        <button
-            className="text-xs text-stone-500  py-2 px-2 rounded" 
-            onClick={handleNewNoteholder}            
+            to="/AddNotePage"
+            className="block px-2"         
             >
-            Ny anteckningsbok
+            + ny konversation
         </button>
-    </div>
+      </div>
+  </SubMenu>
+ 
 
-    </>
-    </section> 
-        
-    <section className="col-span-3 w-full h-auto rounded p-2 m-2 flex justify-start">
-        {/* {activeView === 'newNoteholder' ? (
-          <AddNoteholder />
-        ) : activeView === 'newNote' ? (
-          <AddNote />
-        ) : (
-          <AllNotes />
-        )} */}
-        <p className="text-breadFont mr-4 pr-4"> Contrary to popular belief, Lorem Ipsum  is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. </p>
-
-    </section>
-
-    <section className="col-span-1"></section> 
-    </main>
-            
+  <ContentLayout>    
+        <ViewConversation />
+  </ContentLayout>  
+ 
+   
+    </>           
     );
 }

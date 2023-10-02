@@ -5,12 +5,14 @@ import { useNavigate } from 'react-router-dom';
 export default function AddNote(props) { 
 
     const [name, setName] = useState('');
+    const [date, setDate] = useState('');
     const [desc, setDesc] = useState('');
-    const [noteStatus, setNoteStatus] = useState(null);
-    const [notePriority, setNotePriority] = useState(null);
-    const [noteTags, setNoteTags] = useState(null);
+    const [noteStatus, setNoteStatus] = useState(0);
+    const [notePriority, setNotePriority] = useState(0);
+    const [category, setCategory] = useState(0);
     const [noteholderId, setNoteholderId] = useState(null);
-    
+    const [file, setFile] = useState('');
+
     useEffect(() => {
       if (props.noteholderIdTag !== null) {
         setNoteholderId(props.noteholderIdTag);
@@ -31,9 +33,11 @@ export default function AddNote(props) {
             body: JSON.stringify({
                 name,
                 desc,
+                date,
                 noteStatus,
                 notePriority,
-                noteTags,
+                category,
+                file,
                 noteholderId
             }),
           });
@@ -58,85 +62,88 @@ export default function AddNote(props) {
     <div className="">
           <form className="bg-white rounded pb-8 mb-4" >
             
-              <label 
-                  className="block text-gray-700 text-sm font-bold mb-2" 
-                  htmlFor="title">
-                Titel
-              </label>
-              <input 
-                className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" 
-                id="title" 
-                type="text" 
-                placeholder="Rubrik" 
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+          <div className="flex flex-row">
+                  <input 
+                      className="mb-2 mr-2 shadow-sm appearance-none border rounded py-1 px-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline" 
+                      id="title" 
+                      type="text" 
+                      placeholder="Titel" 
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      />
+
+                  <input 
+                      className="mb-2 shadow-sm appearance-none border rounded py-1 px-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline" 
+                      id="title" 
+                      type="text" 
+                      placeholder="Datum?" 
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      />
+                </div>
         
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="noteDesc"
-            >
-              Beskrivning:
-            </label>
             <textarea
-              className="mb-4shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="mb-2 shadow-sm appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="noteDesc"
               placeholder="Beskrivning"
               value={desc}
               rows="6"
               onChange={(e) => setDesc(e.target.value)}
             />
-          
-{/* Status */}
-            <label 
-              className="block text-gray-700 text-sm font-bold mb-2" 
-              htmlFor="status">
-                Status
-            </label>
+          <div className="flex flex-row">
               <select
-                className="mb-4 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-3 mr-2 shadow-sm appearance-none border rounded py-1 px-3 text-gray-400 text-sm leading-tight focus:outline-none focus:shadow-outline"
                 id="status"
                 value={noteStatus}
-                onChange={(e) => setNoteStatus(parseInt(e.target.value))}
+                onChange={(e) => setNoteStatus(e.target.value)}
               >
-                <option value="">Ej klar</option>
-                <option value="0">Avvakta</option>
-                <option value="1">Startad</option>
-                <option value="2">Klar</option>
+                <option value={''}>Status</option>
+                <option value={0}>Avvakta</option>
+                <option value={1}>Startad</option>
+                <option value={2}>Klar</option>
               </select>
- {/* Prio */}
-            <label 
-              className="block text-gray-700 text-sm font-bold mb-2" 
-              htmlFor="prio">
-                Prioritet
-            </label>
+
               <select
-                className="mb-4 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-3 mr-2 block shadow-sm appearance-none border rounded py-1 px-3 text-gray-400 text-sm leading-tight focus:outline-none focus:shadow-outline"
                 id="prio"
                 value={notePriority}
-                onChange={(e) => setNotePriority(parseInt(e.target.value))}
+                onChange={(e) => setNotePriority(e.target.value)}
               >
-                <option value="">Prioriteringsnivå</option>
-                <option value="0">Låg</option>
-                <option value="1">Normal</option>
-                <option value="2">Akut</option>
+                <option value={''}>Prio</option>
+                <option value={0}>Låg</option>
+                <option value={1}>Normal</option>
+                <option value={2}>Akut</option>
               </select>
          
+              <select
+                className="mb-3 mr-2 block shadow-sm appearance-none border rounded py-1 px-3 text-gray-400 text-sm leading-tight focus:outline-none focus:shadow-outline"
+                id="prio"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                  <option value={''}>Övrigt</option>
+                  <option value={0}>Husmöten</option>
+                  <option value={1}>Projekt</option>
+                  <option value={2}>Att göra</option>
+                  <option value={3}>Kalender</option>
+              </select>
 
+              </div>
+              <input 
+                      className="mb-2 mr-2 shadow-sm appearance-none border rounded py-1 px-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline" 
+                      id="title" 
+                      type="text" 
+                      placeholder="Lägg till fil.." 
+                      value={file}
+                      onChange={(e) => setFile(e.target.value)}
+                      />
           <div className="flex items-center space-x-5 mt-3">
             <button
-                className="bg-teal-900 hover:bg-teal-800 text-dweller-text font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-teal-900 hover:bg-teal-800 text-dweller-text text-sm font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="button"
                 onClick={HandleAddNote}
                 >
               Lägg till anteckning
-            </button>
-
-            <button
-                className="bg-teal-900 hover:bg-teal-800 text-dweller-text font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline "
-                type="button"
-                >
-              Avbryt
             </button>
           </div>
 

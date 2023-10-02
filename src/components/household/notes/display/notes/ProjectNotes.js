@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NoteModal from './NoteModal';
-import { NoteIcon } from '../../../layout/svg/FormIcons';
-import NoteService from '../NoteService';
-import { useNoteContext } from '../../../../contexts/NoteContext';
+import NoteService from '../../NoteService';
 
-export default function AllNotes() {
-  const { notes, setNotes } = useNoteContext();
-  const navigate = useNavigate();
+export default function ProjectNotes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedNoteId, setSelectedNoteId] = useState(null);
+  const [projectNotes, setProjectNotes] = useState(null);
+  const navigate = useNavigate();
+
 
   const handleModalOpen = (noteId) => {
     console.log(noteId);
@@ -22,25 +21,19 @@ export default function AllNotes() {
   };
 
   useEffect(() => {
-    NoteService.getNotes()
+    NoteService.getNotes(1)
       .then((data) => {
         const notesData = data.notes;
-        setNotes(notesData);
+        setProjectNotes(notesData);
         console.log('Data in local storage');
-      })
-      .catch((error) => {
-        if (error.message === 'Unauthorized') {
-          navigate('/LoginPage');
-        } else {
-          console.error('Error:', error);
-        }
       });
-  }, [navigate]);
+      }, []);
+
 
   return (
     <div className="grid gap-4 p-3">
-      {Array.isArray(notes) &&
-        notes.map((point, index) => (
+      {Array.isArray(projectNotes) &&
+        projectNotes.map((point, index) => (
           <div
             className="w-full h-auto bg-[#F6F4EE] border-b-1 border-black shadow-md rounded flex flex-col"
             key={index}

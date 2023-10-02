@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NoteModal from './NoteModal';
-import NoteService from '../NoteService';
-import { useNoteContext } from '../../../../contexts/NoteContext';
+import NoteService from '../../NoteService';
 
-export default function ProjectNotes() {
-  const { notes, setNotes } = useNoteContext();
+export default function TodoNotes() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedNoteId, setSelectedNoteId] = useState(null);
+  const [todoNotes, setTodoNotes] = useState(null);
+  const navigate = useNavigate();
 
-  const projectNotes = notes.filter(note => note.noteStatus === 2);
 
   const handleModalOpen = (noteId) => {
     console.log(noteId);
@@ -21,11 +20,20 @@ export default function ProjectNotes() {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    NoteService.getNotes(2)
+      .then((data) => {
+        const notesData = data.notes;
+        setTodoNotes(notesData);
+        console.log('Data in local storage');
+      });
+      }, []);
+
 
   return (
     <div className="grid gap-4 p-3">
-      {Array.isArray(projectNotes) &&
-        projectNotes.map((point, index) => (
+      {Array.isArray(todoNotes) &&
+        todoNotes.map((point, index) => (
           <div
             className="w-full h-auto bg-[#F6F4EE] border-b-1 border-black shadow-md rounded flex flex-col"
             key={index}

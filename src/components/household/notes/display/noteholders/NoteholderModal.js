@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import NoteService from '../NoteService';
+import NoteService from '../../NoteService';
 import { useNavigate } from 'react-router-dom';
-import { EditIcon, DeleteIcon,  } from '../../../layout/svg/FormIcons';
+import { EditIcon, DeleteIcon,  } from '../../../../layout/svg/FormIcons';
 import Modal from 'react-bootstrap/Modal';
-import AddNote from '../add/AddNote';
+import AddNote from '../../add/AddNote';
 
 const NoteholderModal = ({ noteholderId, isOpen, onClose, }) => {
     const [noteholder, setNoteholder] = useState(null);
@@ -11,21 +11,15 @@ const NoteholderModal = ({ noteholderId, isOpen, onClose, }) => {
     const [hide, setHide] = useState(false);
 
     const fetchNoteholder = async () => {
-        try {
-          const data = await NoteService.getNoteholder(noteholderId);
-          setNoteholder(data);
-          if (data != null) {
-            navigate('/NotesPage'); 
-          } 
-        } catch (error) {
-          navigate('/ErrorPage');
-        }
-      };
+      const data = await NoteService.getNoteholder(noteholderId);
+      setNoteholder(data);
+      if (data != null) {
+        navigate('/NotesPage'); 
+      }};
 
       const handleAddNote = async() => {
         setHide(true);
       }
-
 
       useEffect(() => {
         if (isOpen) {
