@@ -1,23 +1,24 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react'; 
 import { AuthContext } from '../../App';
+import SubMenu from '../layout/SubMenu';
 
 
 export default function HeaderNav() {
     const [loggedIn, setLoggedIn] = useContext(AuthContext);
 
     return (
-    <div className="flex flex-col w-full text-center bg-[#313131]">   
+    <div className="grid grid-cols-1 bg-[#313131] py-2 w-full lg:px-16 lg:grid grid-cols-2">   
 
         {/* Logo */}
-        <div className="block self-center">
-            <h1 className="font-logoText text-6xl text-[#0E7A60] mx-5">
-                dwellers
+        <div className="lg:col-span-1">
+            <h1 className="font-logoText text-4xl text-[#0E7A60] mx-5 relative z-10">
+            dwellers
             </h1>
         </div>
 
         {/* Logged in / Logged out */}
-        <div className="flex self-center block py-1 mx-5 text-stone-500 space-x-5">
+        <div className="lg:col-span-1 flex justify-end py-1 mx-5 text-stone-500 space-x-5">
         {loggedIn ? (
                 <>
                 <Link

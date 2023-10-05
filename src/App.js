@@ -12,6 +12,7 @@ import RegisterHouseMemberPage from './pages/authentication/RegisterHouseMemberP
 import NotesPage from './pages/household/notes/NotesPage';
 import Dashboard from './pages/household/dashboard/DashboardPage';
 import ChatPage from './pages/household/chat/ChatPage';
+import MapPage from './pages/neighbourhood/map/MapPage';
 import ErrorPage from './pages/errorhandling/ErrorPage';
 
 export const AuthContext = createContext();
@@ -31,7 +32,7 @@ function App() {
   return (
     <AuthContext.Provider value={[loggedIn, changeLoggedIn]}>
       <BrowserRouter>
-      <HeaderNav />  
+      <HeaderNav /> 
       <MainLayout>
           <Routes>
               <Route path='/LoginPage' element={<LoginPage/>} />
@@ -47,12 +48,14 @@ function App() {
               <Route path='/NotesPage' element={ <NotesPage /> } />
 
               <Route path='/ChatPage' element={<ChatPage /> } />
+              
+              <Route path='/MapPage' element={<MapPage /> } />
 
               <Route path='/ErrorPage' element={<ErrorPage/>}/>
           </Routes>
       </MainLayout>
       <FooterPage/>
-      <Footer />
+      <Footer/>
       </BrowserRouter>
       </AuthContext.Provider>
   );

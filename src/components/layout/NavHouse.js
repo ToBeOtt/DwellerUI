@@ -1,41 +1,48 @@
 import { Link } from 'react-router-dom';
 import { ChatIcon, HouseholdIcon, NeighbourhoodIcon } from './svg/NavbarIcons';
+import {NoteIcon} from './svg/FormIcons';
 
-export default function NavHouse() {
+export default function NavHouse({ children }) {
+
   return (
          <>
           <div>
-              <span className="text-xs text-left text-stone-400">
               <Link 
-                to="/NotesPage"
+                to="/DashboardPage"
                 className="flex justify-center text-hh hover:text-hover-hh no-underline mr-6">
                   <HouseholdIcon />
                </Link>
-                      Hushåll
-                </span>
           </div>
 
           <div>
-              <span className="text-xs text-left text-stone-400">
+              
               <Link 
                 to="/ChatPage"
                 className="flex justify-center text-hh hover:text-hover-hh no-underline mr-6">
                   <ChatIcon />
                </Link>
-                      Chat
-                </span>
+
           </div>
 
           <div>
-              <span className="text-xs text-left text-stone-400">
+              
+              <Link 
+                to="/NotesPage"
+                className="flex justify-center text-hh hover:text-hover-hh no-underline mr-6">
+                  <NoteIcon />
+               </Link>
+
+          </div>
+
+          <div>
+              
 
               <Link 
-                  to="/CalendarPage" 
+                  to="/MapPage" 
                   className="flex justify-center text-hh hover:text-hover-hh no-underline mr-6">
                     <NeighbourhoodIcon />
                </Link>
-                      Grannskap
-                </span>
+
           </div>
           </>
   );

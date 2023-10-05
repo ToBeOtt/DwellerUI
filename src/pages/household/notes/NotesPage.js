@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AllNotes from '../../../components/household/notes/display/notes/AllNotes';
 import ProjectNotes from '../../../components/household/notes/display/notes/ProjectNotes';
 import TodoNotes from '../../../components/household/notes/display/notes/TodoNotes';
@@ -9,7 +9,7 @@ import AddNoteholder from '../../../components/household/notes/add/AddNoteholder
 import SubMenu from '../../../components/layout/SubMenu';
 import ContentLayout from '../../../components/layout/ContentLayout'
 
-export default function NotesPage() {
+export default function NotesPage(props) {
   //Navigation
   const [activeView, setActiveView] = useState('allNotes');
 
@@ -37,14 +37,12 @@ export default function NotesPage() {
     setActiveView('todoNotes');
   };
 
-
-
   
   
 return (
 <>
 <SubMenu> 
-    <div className="text-xs font-titleFont text-stone-500 py-2 rounded border-x-2 border-stone-500 px-5">
+    <div className="text-xs font-titleFont text-stone-500 rounded border-x-2 border-stone-500 px-5">
         <h1 className="my-1 tracking-wider font-logoText text-stone-400 underline">kategorier</h1>
 
         <button

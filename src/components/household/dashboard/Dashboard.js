@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import baseUrl from '../../config/apiConfig';
+import baseUrl from '../../../config/apiConfig';
 
 export default function Dashboard() {
   const [userData, setUserData] = useState(null);
@@ -39,19 +39,14 @@ export default function Dashboard() {
    <>
       {userData  ? (
         <>
-          <div className="grid grid-rows-1 w-full"> 
-            <div className="row-span-1 bg-[#EFE7D0] min-h-[60vh]">
-              <div className="bg-[#EFE7D0] w-3/6 m-auto m-5 p-5">
-                <h4 className="font-serif text-title text-[#279A88]">Användarinfo: </h4> 
-                <p className="font-serif text-stone-900">{userData.user.alias}</p>
+          <div className="w-full flex flex-col justify-center"> 
 
-                <h4 className="font-serif text-[#279A88]">Husinfo: </h4> 
-                <p className="text-stone-900 ">{userData.house.name}</p>
-                <p className="text-stone-900 ">{userData.house.name}</p>
-                <p className="text-stone-900 ">{userData.house.name}</p>
+                <h4 className="font-serif text-title text-[#279A88]">{userData.user.alias}</h4> 
+                <h4 className="font-serif text-[#279A88]">{userData.house.name}</h4> 
 
-              </div>
-            </div>
+
+
+
           </div>
 
           </>

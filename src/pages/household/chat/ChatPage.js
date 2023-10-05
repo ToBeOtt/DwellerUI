@@ -15,7 +15,7 @@ export default function ChatPage() {
 return (
 <>
   <SubMenu> 
-    <div className="text-xs font-titleFont text-stone-600 py-2 rounded border-x-2 border-stone-500 px-3">
+    <div className="text-xs font-titleFont text-stone-600 rounded border-x-2 border-stone-500 px-3">
         <h1 className="my-1 tracking-wider font-logoText text-stone-400 underline">Konversationer</h1>
 
         <button
