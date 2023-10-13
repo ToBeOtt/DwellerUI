@@ -9,9 +9,11 @@ export default function RegisterHouse() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const navigate = useNavigate();
+  const [error, SetError] = useState(null);
 
   const handleRegister = async () => {
     try {
+      console.log(email);
       const response = await fetch(`${baseUrl}/auth/RegisterHouse`, {
         method: 'POST',
         headers: {
@@ -26,14 +28,21 @@ export default function RegisterHouse() {
   
       if (response.ok) {
         navigate('/loginPage');
-
-      } else {
-          navigate('/ErrorPage');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+      } if (response.status === 401) {
+        navigate('RegisterPage');
+       }
+       if (response.status === 400) {
+         navigate('/ErrorPage');
+        }
+       if (response.status === 500) {
+         const errorData = await response.json();
+         const errorMessages = errorData.message.split(/\r?\n/);
+         SetError(errorMessages);
+       }
+     } catch (error) {
+       console.error('Error:', error);
+     }
+   };
 
 
   return (
@@ -70,6 +79,14 @@ export default function RegisterHouse() {
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
+
+          {error && (
+                <div className="text-red-500 text-xs italic">
+                  {error.map((errorMessage, index) => (
+                    <p key={index}>{errorMessage}</p>
+                  ))}
+                </div>
+              )}
 
           <div className="flex items-center justify-between">
             <button

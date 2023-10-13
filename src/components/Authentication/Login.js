@@ -8,6 +8,7 @@ export default function Login(props) {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useContext(AuthContext);
+  const [error, SetError] = useState(null);
 
   const handleSignIn = async () => {
     try {
@@ -30,8 +31,16 @@ export default function Login(props) {
         setLoggedIn(true); 
         navigate('/DashboardPage');
 
-      } else {
+      } if (response.status === 401) {
+       navigate('RegisterPage');
+      }
+      if (response.status === 400) {
         navigate('/ErrorPage');
+       }
+      if (response.status === 500) {
+        const errorData = await response.json();
+        const errorMessages = errorData.message.split(/\r?\n/);
+        SetError(errorMessages);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -41,7 +50,7 @@ export default function Login(props) {
 
   return (
     <>
-    <div className="mx-auto w-1/4">
+    <div className="mx-auto w-full md:w-2/4 lg:w-2/4 xl:w-1/4">
 
 {/* Login-form */}
       <article>
@@ -76,8 +85,15 @@ export default function Login(props) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-
-              <p class="text-red-500 text-xs italic">Please enter a password.</p>
+              
+              {error && (
+                <div className="text-red-500 text-xs italic">
+                  {error.map((errorMessage, index) => (
+                    <p key={index}>{errorMessage}</p>
+                  ))}
+                </div>
+              )}
+             
                 </div>
                   <div class="flex items-center justify-between">
                   <button

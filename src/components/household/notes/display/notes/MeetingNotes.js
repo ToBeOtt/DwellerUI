@@ -33,7 +33,7 @@ export default function MeetingNotes() {
       {Array.isArray(meetingNotes) &&
         meetingNotes.map((point, index) => (
           <div
-            className="w-full h-auto bg-[#F6F4EE] border-b-1 border-black shadow-md rounded flex flex-col"
+            className="w-full h-auto bg-[#F6F4EE] border-b-1 border-black shadow-md rounded flex flex-col p-8"
             key={index}
           >
             <div className="grid grid-cols-2 items-center m-2">

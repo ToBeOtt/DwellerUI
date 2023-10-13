@@ -4,7 +4,14 @@ const NoteService = {
 
   getNotes: async (noteCategory) => {
     try {
-      const response = await fetch(`${baseUrl}/notes/GetNotes?noteCategory=${noteCategory}`, {
+
+      let apiUrl = `${baseUrl}/notes/GetNotes`;
+
+    if (noteCategory !== null) {
+      apiUrl += `?noteCategory=${noteCategory}`;
+    }
+
+      const response = await fetch(apiUrl, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

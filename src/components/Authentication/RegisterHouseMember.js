@@ -5,6 +5,7 @@ import baseUrl from '../../config/apiConfig';
 export default function RegisterHouseMember() {
   const location  = useLocation();
   const email = new URLSearchParams(location.search).get('Email'); 
+  const [error, SetError] = useState(null);
 
   const [invitation, setInvitation] = useState('');
   const navigate = useNavigate();
@@ -24,15 +25,21 @@ export default function RegisterHouseMember() {
   
       if (response.ok) {
         navigate('/loginPage');
-
-      } else {
-          navigate('/ErrorPage');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
+      } if (response.status === 401) {
+        navigate('RegisterPage');
+       }
+       if (response.status === 400) {
+         navigate('/ErrorPage');
+        }
+       if (response.status === 500) {
+         const errorData = await response.json();
+         const errorMessages = errorData.message.split(/\r?\n/);
+         SetError(errorMessages);
+       }
+     } catch (error) {
+       console.error('Error:', error);
+     }
+   };
 
   return (
     <>
@@ -52,6 +59,13 @@ export default function RegisterHouseMember() {
               value={invitation}
               onChange={(e) => setInvitation(e.target.value)}
             />
+            {error && (
+                <div className="text-red-500 text-xs italic">
+                  {error.map((errorMessage, index) => (
+                    <p key={index}>{errorMessage}</p>
+                  ))}
+                </div>
+              )}
           </section>
           
           <button

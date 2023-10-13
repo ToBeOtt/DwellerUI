@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react';
 import baseUrl from '../../../../config/apiConfig';
 import { useNavigate } from 'react-router-dom';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'; 
 
 export default function AddNote(props) { 
 
-    const [name, setName] = useState('');
-    const [date, setDate] = useState('');
-    const [desc, setDesc] = useState('');
-    const [noteStatus, setNoteStatus] = useState(0);
-    const [notePriority, setNotePriority] = useState(0);
-    const [category, setCategory] = useState(0);
-    const [noteholderId, setNoteholderId] = useState(null);
-    const [file, setFile] = useState('');
+  const [name, setName] = useState(null);
+  const [date, setDate] = useState(null);
+  const [desc, setDesc] = useState(null);
+  const [noteStatus, setNoteStatus] = useState(null);
+  const [notePriority, setNotePriority] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [noteScope, setNoteScope] = useState(null);
+  const [noteholderId, setNoteholderId] = useState(null);
+  const [file, setFile] = useState(null);
+  
 
     useEffect(() => {
       if (props.noteholderIdTag !== null) {
@@ -37,6 +41,7 @@ export default function AddNote(props) {
                 noteStatus,
                 notePriority,
                 category,
+                noteScope,
                 file,
                 noteholderId
             }),
@@ -59,8 +64,8 @@ export default function AddNote(props) {
 
     return (
     <>
-    <div className="">
-          <form className="bg-white rounded pb-8 mb-4" >
+    <div className="flex justify-center">
+          <form className="rounded pb-8 mb-4 w-full" >
             
           <div className="flex flex-row">
                   <input 
@@ -72,14 +77,13 @@ export default function AddNote(props) {
                       onChange={(e) => setName(e.target.value)}
                       />
 
-                  <input 
-                      className="mb-2 shadow-sm appearance-none border rounded py-1 px-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline" 
-                      id="title" 
-                      type="text" 
-                      placeholder="Datum?" 
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      />
+                      <ReactDatePicker
+                      className="mb-2 mr-2 shadow-sm appearance-none border rounded py-1 px-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline"
+                      selected={date} // Set the selected date
+                      onChange={(date) => setDate(date)} // Handle date changes
+                      dateFormat="yyyy-MM-dd" // Specify the date format
+                      placeholderText="Välj datum" // Set a placeholder text
+                    />
                 </div>
         
             <textarea
@@ -94,10 +98,10 @@ export default function AddNote(props) {
               <select
                 className="mb-3 mr-2 shadow-sm appearance-none border rounded py-1 px-3 text-gray-400 text-sm leading-tight focus:outline-none focus:shadow-outline"
                 id="status"
-                value={noteStatus}
-                onChange={(e) => setNoteStatus(e.target.value)}
+                value={noteStatus === null ? "" : noteStatus} // Use an empty string for the placeholder
+                onChange={(e) => setNoteStatus(e.target.value || null)} // Set null if the user selects the empty value
               >
-                <option value={''}>Status</option>
+                <option value="" disabled hidden>Status</option>
                 <option value={0}>Avvakta</option>
                 <option value={1}>Startad</option>
                 <option value={2}>Klar</option>
@@ -106,10 +110,10 @@ export default function AddNote(props) {
               <select
                 className="mb-3 mr-2 block shadow-sm appearance-none border rounded py-1 px-3 text-gray-400 text-sm leading-tight focus:outline-none focus:shadow-outline"
                 id="prio"
-                value={notePriority}
-                onChange={(e) => setNotePriority(e.target.value)}
+                value={notePriority === null ? "" : notePriority}
+                onChange={(e) => setNotePriority(e.target.value || null)}
               >
-                <option value={''}>Prio</option>
+                <option value="" disabled hidden>Prioritet</option>
                 <option value={0}>Låg</option>
                 <option value={1}>Normal</option>
                 <option value={2}>Akut</option>
@@ -117,23 +121,34 @@ export default function AddNote(props) {
          
               <select
                 className="mb-3 mr-2 block shadow-sm appearance-none border rounded py-1 px-3 text-gray-400 text-sm leading-tight focus:outline-none focus:shadow-outline"
-                id="prio"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                id="category"
+                value={category === null ? "" : category}
+                onChange={(e) => setCategory(e.target.value || null)}
               >
-                  <option value={''}>Övrigt</option>
+                  <option value="" disabled hidden>Kategori</option>
                   <option value={0}>Husmöten</option>
                   <option value={1}>Projekt</option>
                   <option value={2}>Att göra</option>
                   <option value={3}>Kalender</option>
               </select>
 
+              <select
+                className="mb-3 mr-2 block shadow-sm appearance-none border rounded py-1 px-3 text-gray-400 text-sm leading-tight focus:outline-none focus:shadow-outline"
+                value={noteScope === null ? "" : noteScope}
+                onChange={(e) => setNoteScope(e.target.value || null)}
+              >
+                  <option value="" disabled hidden>Synlighet</option>
+                  <option value={0}>Hushåll</option>
+                  <option value={1}>Grannskap</option>
+                  <option value={2}>Regionalt</option>
+               </select>
+
               </div>
               <input 
                       className="mb-2 mr-2 shadow-sm appearance-none border rounded py-1 px-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline" 
                       id="title" 
                       type="text" 
-                      placeholder="Lägg till fil.." 
+                      placeholder="Profilfoto.." 
                       value={file}
                       onChange={(e) => setFile(e.target.value)}
                       />

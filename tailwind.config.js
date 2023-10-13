@@ -30,6 +30,7 @@ module.exports = {
       ...customColors,
     },
   },
+
   variants: {},
   plugins: [],
 }}

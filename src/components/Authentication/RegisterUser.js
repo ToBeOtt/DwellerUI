@@ -11,6 +11,7 @@ export default function RegisterUser(props) {
   const [registerHouseClicked, setRegisterHouseClicked] = useState(true);
   const [passwordsMatch, setPasswordsMatch] = useState(true); 
   const navigate = useNavigate();
+  const [error, SetError] = useState(null);
 
   const handleHouseholdOptionChange = (e) => {
     setHouseholdOption(e.target.value);
@@ -42,23 +43,27 @@ export default function RegisterUser(props) {
       });
   
       if (response.ok) {
-        const user = await response.json();
-        const Email = user.email;
-
         if (householdOption === 'create') { 
-          navigate(`/registerHousePage?Email=${Email}`);
+          navigate(`/registerHousePage?Email=${email}`);
           
         } else if (householdOption === 'join') { 
-          navigate(`/registerHouseMemberPage?Email=${Email}`);
+          navigate(`/registerHouseMemberPage?Email=${email}`);
         }
-        
-      } else {
-          navigate('/ErrorPage');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+      } if (response.status === 401) {
+        navigate('RegisterPage');
+       }
+       if (response.status === 400) {
+         navigate('/ErrorPage');
+        }
+       if (response.status === 500) {
+         const errorData = await response.json();
+         const errorMessages = errorData.message.split(/\r?\n/);
+         SetError(errorMessages);
+       }
+     } catch (error) {
+       console.error('Error:', error);
+     }
+   };
   
   return(
     <>
@@ -125,6 +130,13 @@ export default function RegisterUser(props) {
         />
 
         <p className="text-dweller-pink text-xs italic">Repeat password.</p>
+             {error && (
+                <div className="text-red-500 text-xs italic">
+                  {error.map((errorMessage, index) => (
+                    <p key={index}>{errorMessage}</p>
+                  ))}
+                </div>
+              )}
         </div>
 
         <hr classname="rounded-md"></hr>

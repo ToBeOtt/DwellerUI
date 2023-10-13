@@ -6,6 +6,7 @@ import { formatDate } from '../../utils/FormatTime';
 import FetchUserData from '../../utils/FetchUserData';
 
 
+
 export default function ViewConversation() {
     const [messages, setMessages] = useState([]);
     const [conversationId, setConversationId] = useState('');
@@ -45,12 +46,13 @@ export default function ViewConversation() {
 
         return (
           <>
-          <ChatComponent
-                key={conversationId}
-                conversationId={conversationId}
-                fetchAndUpdateConversationData={fetchAndUpdateConversationData} 
+        
+              <ChatComponent
+                    key={conversationId}
+                    conversationId={conversationId}
+                    fetchAndUpdateConversationData={fetchAndUpdateConversationData} 
               />
-          
+
 
               {Array.isArray(messages.allMessages) &&
                 messages.allMessages
@@ -59,7 +61,8 @@ export default function ViewConversation() {
                     
                      
                     <div key={message.id} className="message flex justify-center">
-                      <MessageBox
+        
+                    <MessageBox
                          currentUser={currentUser.id}
                          messageSender={message.user.id}
                       >
@@ -82,9 +85,11 @@ export default function ViewConversation() {
          
                      </section>
                      </MessageBox>
+                    
                     </div>
                     
                   ))}
+           
           </>
         );
 }
